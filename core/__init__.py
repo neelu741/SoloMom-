@@ -1,0 +1,3 @@
+"""
+SoloMom Advisor Core Package
+"""

@@ -1,0 +1,47 @@
+/* Custom Styling for SoloMom Advisor SPA */
+
+.nav-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  color: #64748b;
+  transition: all 0.15s ease-in-out;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.nav-tab.active-tab {
+  background-color: #ffe4e6;
+  color: #e11d48;
+  font-weight: 600;
+}
+
+.badge-high {
+  background-color: #fee2e2;
+  color: #991b1b;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.badge-watch {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.badge-info {
+  background-color: #e0f2fe;
+  color: #075985;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+}

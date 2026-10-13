@@ -1,0 +1,10 @@
+[
+  {"age": "Birth", "vaccine": "BCG, OPV-0, Hepatitis B-0"},
+  {"age": "6 Weeks", "vaccine": "OPV-1, Pentavalent-1, Rotavirus-1, PCV-1"},
+  {"age": "10 Weeks", "vaccine": "OPV-2, Pentavalent-2, Rotavirus-2"},
+  {"age": "14 Weeks", "vaccine": "OPV-3, Pentavalent-3, Rotavirus-3, fIPV-2, PCV-2"},
+  {"age": "9 Months", "vaccine": "MR-1, fIPV-3, PCV-Booster, Vit A-1"},
+  {"age": "16-24 Months", "vaccine": "MR-2, DPT-Booster 1, OPV-Booster, Vit A-2"},
+  {"age": "5-6 Years", "vaccine": "DPT-Booster 2"},
+  {"age": "10 Years", "vaccine": "Td (Tetanus & adult Diphtheria)"}
+]

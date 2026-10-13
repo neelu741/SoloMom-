@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoloMom Advisor — AI Family Advisor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+  <!-- Top Header Banner -->
+  <header class="bg-gradient-to-r from-rose-600 to-indigo-700 text-white shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center gap-4">
+      <div class="flex items-center space-x-3">
+        <span class="text-3xl">👩‍👧</span>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">SoloMom Advisor</h1>
+          <p class="text-xs text-rose-100 italic">“Every family had an elder who watched over everything. Single mothers don't. We built one.”</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center space-x-3 text-xs md:text-sm">
+        <div class="flex items-center space-x-2 bg-white/20 px-3 py-1.5 rounded-xl font-medium backdrop-blur-sm">
+          <span class="text-xs text-rose-100 hidden sm:inline">Demo Family:</span>
+          <select id="persona-select" class="bg-white text-slate-800 text-xs font-semibold px-2.5 py-1 rounded-lg border-0 shadow-sm cursor-pointer focus:ring-2 focus:ring-rose-300">
+            <option value="priya">Priya (32) & Aarav (4) — Admin (₹32k)</option>
+            <option value="aarti">Aarti (36) & Veda (12) — Govt Teacher (₹65k)</option>
+          </select>
+        </div>
+
+        <div id="persona-badge" class="bg-white/20 px-3 py-1.5 rounded-xl font-medium backdrop-blur-sm hidden md:block">
+          Loading Persona...
+        </div>
+
+        <button id="btn-reset-demo" class="bg-white text-rose-700 hover:bg-rose-50 font-semibold px-3 py-1.5 rounded-lg shadow-sm transition">
+          🔄 Reset
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Navigation Tabs -->
+  <nav class="bg-white border-b border-slate-200 sticky top-0 z-20 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 flex overflow-x-auto space-x-1 py-2 text-sm font-medium">
+      <button class="nav-tab active-tab" data-tab="tab-dashboard">🏠 Dashboard</button>
+      <button class="nav-tab" data-tab="tab-money">💰 Money Plan</button>
+      <button class="nav-tab" data-tab="tab-health">🩺 Health & Vaccines</button>
+      <button class="nav-tab" data-tab="tab-tasks">📅 Tasks & Calendar</button>
+      <button class="nav-tab" data-tab="tab-advisor">🤖 Advisor & Re-plan</button>
+      <button class="nav-tab" data-tab="tab-review">📊 Weekly Review</button>
+      <button class="nav-tab" data-tab="tab-profile">⚙️ Household Profile</button>
+    </div>
+  </nav>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 py-6">
+
+    <!-- 1. DASHBOARD TAB -->
+    <section id="tab-dashboard" class="tab-content block space-y-6">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="dash-metrics">
+        <!-- Dynamically rendered metrics -->
+      </div>
+
+      <!-- Executive Advisor Card Component (Personal Assistant Briefing) -->
+      <div class="bg-gradient-to-r from-rose-50 via-white to-indigo-50 border border-rose-200 rounded-2xl p-6 shadow-sm space-y-4">
+        <div class="flex items-center justify-between border-b border-rose-100 pb-3">
+          <div class="flex items-center space-x-2 text-rose-700 font-semibold text-xs tracking-wider uppercase">
+            <span class="text-base">💼</span> <span>Executive Personal Assistant Briefing</span>
+          </div>
+          <span class="text-xs bg-rose-100 text-rose-800 font-medium px-2.5 py-0.5 rounded-full" id="briefing-time-badge">Standup Briefing</span>
+        </div>
+
+        <div>
+          <h2 id="card-headline" class="text-xl font-bold text-slate-900 mb-1">Executive Action Briefing</h2>
+          <p id="card-greeting" class="text-sm font-medium text-slate-700 italic">Good morning. Here is your executive briefing for today:</p>
+        </div>
+
+        <!-- Task & Issue Action Bullets -->
+        <div id="card-bullets" class="space-y-3 pt-1">
+          <div class="bg-blue-50 border border-blue-200 rounded-xl p-3.5 transition hover:shadow-sm">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center space-x-2">
+                <span class="text-base">📅</span>
+                <span class="font-bold text-xs uppercase tracking-wider px-2 py-0.5 rounded-md bg-blue-100 text-blue-900">SCHEDULE</span>
+                <span class="font-semibold text-sm text-slate-900">Calendar Conflict Detected</span>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">#Item-1</span>
+            </div>
+            <p class="text-xs text-slate-700 leading-relaxed mb-2 pl-6">On 2026-10-19: Board exam paper evaluation (15:00-18:30) overlaps with Veda's Parent-Teacher Meeting (17:00-18:00).</p>
+            <div class="flex items-center space-x-2 pl-6 pt-1 text-xs font-medium text-blue-800">
+              <span>💡 <b>Assistant Proposal:</b></span>
+              <span>Shall I reshuffle your non-critical work block to keep your child's priority clear?</span>
+            </div>
+          </div>
+
+          <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3.5 transition hover:shadow-sm">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center space-x-2">
+                <span class="text-base">💰</span>
+                <span class="font-bold text-xs uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-900">FINANCE</span>
+                <span class="font-semibold text-sm text-slate-900">Category Spending Alert</span>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">#Item-2</span>
+            </div>
+            <p class="text-xs text-slate-700 leading-relaxed mb-2 pl-6">Groceries is at ₹9,800 of ₹12,000 (82% used) with 13 days left; projected to reach ₹16,878.</p>
+            <div class="flex items-center space-x-2 pl-6 pt-1 text-xs font-medium text-emerald-800">
+              <span>💡 <b>Assistant Proposal:</b></span>
+              <span>Shall I place a temporary freeze on non-essential spending for the next 7 days?</span>
+            </div>
+          </div>
+
+          <div class="bg-amber-50 border border-amber-200 rounded-xl p-3.5 transition hover:shadow-sm">
+            <div class="flex items-start justify-between gap-2 mb-1.5">
+              <div class="flex items-center space-x-2">
+                <span class="text-base">⏰</span>
+                <span class="font-bold text-xs uppercase tracking-wider px-2 py-0.5 rounded-md bg-amber-100 text-amber-900">BILLS & DEADLINES</span>
+                <span class="font-semibold text-sm text-slate-900">Upcoming Essential Due Date</span>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">#Item-3</span>
+            </div>
+            <p class="text-xs text-slate-700 leading-relaxed mb-2 pl-6">Pay school fees (Rs 3,000) is due tomorrow.</p>
+            <div class="flex items-center space-x-2 pl-6 pt-1 text-xs font-medium text-amber-800">
+              <span>💡 <b>Assistant Proposal:</b></span>
+              <span>The funds are reserved in your plan. Shall I mark this reminder ready for payment?</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fallback plain text container if needed -->
+        <div id="card-message" class="hidden text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border whitespace-pre-line leading-relaxed"></div>
+
+        <!-- Closing Assistant Note & Actions -->
+        <div class="pt-2 border-t border-rose-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <p id="card-closing" class="text-xs text-slate-600 font-medium italic"></p>
+          <div id="card-actions" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+
+      <!-- Quick 30-Second Check-in -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+        <h3 class="text-base font-semibold text-slate-900 mb-3 flex items-center gap-2">
+          ⚡ 30-Second Daily Log (Sleep & Mood)
+        </h3>
+        <form id="form-dash-checkin" class="grid grid-cols-1 sm:grid-cols-4 gap-4 items-end">
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1">Sleep Last Night (hrs)</label>
+            <input type="number" step="0.5" id="dash-sleep" value="7" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500" required />
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1">Today's Mood</label>
+            <select id="dash-mood" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500">
+              <option value="good">Good 😊</option>
+              <option value="okay" selected>Okay 🙂</option>
+              <option value="tired">Tired 🥱</option>
+              <option value="stressed">Stressed 😰</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1">Quick Note (optional)</label>
+            <input type="text" id="dash-note" placeholder="Felt busy..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-rose-500" />
+          </div>
+          <button type="submit" class="bg-rose-600 hover:bg-rose-700 text-white font-medium px-4 py-2 rounded-lg shadow-sm transition text-sm">
+            Save Log
+          </button>
+        </form>
+      </div>
+
+      <!-- 🎙️ Whisper Voice Note Assistant Widget -->
+      <div class="bg-gradient-to-r from-purple-50 to-indigo-50 border border-indigo-200 rounded-2xl p-5 shadow-sm space-y-3">
+        <div class="flex justify-between items-center">
+          <h3 class="text-base font-semibold text-indigo-950 flex items-center gap-2">
+            <span>🎙️</span> <span>Whisper Voice Assistant (Speech-to-Text & Auto-Rescheduler)</span>
+          </h3>
+          <span class="text-xs font-semibold text-indigo-700 bg-indigo-100 px-2.5 py-1 rounded-full">Hinglish / English Voice Note</span>
+        </div>
+        <p class="text-xs text-indigo-800">Speak what's new (e.g., <i>"Paid ₹600 for medicines today"</i> or <i>"Aarav is unwell, move my work meeting to tomorrow"</i>). The LLM transcribes, updates memory, and reshuffles tasks automatically.</p>
+
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <button id="btn-record-voice" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow transition flex items-center space-x-2">
+            <span id="mic-icon">🎤</span> <span id="record-text">Hold / Click to Speak</span>
+          </button>
+          <div id="recording-timer" class="hidden text-xs text-rose-600 font-semibold animate-pulse">⏺️ Recording...</div>
+        </div>
+
+        <!-- Simulated / Direct Voice Input Form -->
+        <div class="pt-2">
+          <form id="form-voice-text" class="flex gap-2">
+            <input type="text" id="voice-text-input" placeholder="Or type voice transcript e.g. Paid 600 rupees for medicines today and shift meeting to tomorrow..." class="flex-1 border border-indigo-200 rounded-lg px-3 py-2 text-xs bg-white focus:ring-2 focus:ring-indigo-500" />
+            <button type="submit" class="bg-indigo-700 text-white font-semibold text-xs px-4 py-2 rounded-lg shadow-sm">Process Voice Text</button>
+          </form>
+        </div>
+
+        <div id="voice-result-box" class="hidden bg-white border border-indigo-200 rounded-xl p-3 text-xs space-y-1.5 text-slate-800">
+          <div class="font-semibold text-indigo-900" id="voice-transcript-display"></div>
+          <div id="voice-actions-display" class="space-y-1 text-slate-700"></div>
+        </div>
+      </div>
+
+      <!-- Active Warnings / Rule Flags -->
+      <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+        <h3 class="text-base font-semibold text-slate-900 mb-3">🚩 Household Scan Flags</h3>
+        <div id="flags-list" class="space-y-2">
+          <!-- Dynamically rendered flags -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MONEY PLAN TAB -->
+    <section id="tab-money" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Budget List & Progress -->
+        <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+          <h3 class="text-lg font-bold text-slate-900">📊 Monthly Budget Breakdown</h3>
+          <div id="budget-category-list" class="space-y-4">
+            <!-- Dynamically populated progress bars -->
+          </div>
+        </div>
+
+        <!-- Add Expense Form & Reallocation -->
+        <div class="space-y-6">
+          <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+            <h3 class="text-base font-semibold text-slate-900 mb-3">➕ Log New Expense</h3>
+            <form id="form-add-expense" class="space-y-3">
+              <div>
+                <label class="block text-xs font-medium text-slate-600">Category</label>
+                <select id="exp-category" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></select>
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600">Amount (₹)</label>
+                <input type="number" id="exp-amount" value="500" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" required />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-600">Note / Vendor</label>
+                <input type="text" id="exp-note" placeholder="Groceries, Cab..." class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+              </div>
+              <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 rounded-lg text-sm transition">
+                Log Expense
+              </button>
+            </form>
+          </div>
+
+          <!-- Unexpected Cost Reallocator -->
+          <div class="bg-indigo-50 border border-indigo-200 rounded-2xl p-5 shadow-sm space-y-3">
+            <h3 class="text-base font-semibold text-indigo-900">🔀 Unexpected Cost Re-allocator</h3>
+            <p class="text-xs text-indigo-700">Test how unexpected expenses are safely funded without touching essential Rent or Daycare money.</p>
+            <div class="space-y-2">
+              <input type="number" id="realloc-amt" value="500" class="w-full border border-indigo-200 rounded-lg px-3 py-2 text-sm" />
+              <button id="btn-calc-realloc" class="w-full bg-indigo-600 text-white text-xs font-medium py-2 rounded-lg">Preview Reallocation</button>
+            </div>
+            <div id="realloc-result" class="text-xs text-slate-700 space-y-1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. HEALTH & VACCINES TAB -->
+    <section id="tab-health" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Her Wellbeing -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+          <h3 class="text-lg font-bold text-slate-900">🧘 Her Wellbeing Trends</h3>
+          <div id="wellbeing-summary" class="grid grid-cols-2 gap-3"></div>
+          <div id="wellbeing-history" class="space-y-2 text-xs"></div>
+        </div>
+
+        <!-- Child Vaccination Tracker -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+          <h3 class="text-lg font-bold text-slate-900">💉 Child Vaccination Tracker</h3>
+          <div id="vaccines-list" class="space-y-3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TASKS & CALENDAR TAB -->
+    <section id="tab-tasks" class="tab-content hidden space-y-6">
+      <div id="tasks-conflict-alert"></div>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="lg:col-span-2 bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+          <h3 class="text-lg font-bold text-slate-900">🗓️ Weekly Schedule</h3>
+          <div id="tasks-list" class="space-y-3"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-3">
+          <h3 class="text-base font-semibold text-slate-900">➕ Add Task / Appointment</h3>
+          <form id="form-add-task" class="space-y-2 text-xs">
+            <input type="text" id="task-title" placeholder="Title..." class="w-full border rounded p-2" required />
+            <select id="task-kind" class="w-full border rounded p-2">
+              <option value="task">Task</option>
+              <option value="appointment">Appointment</option>
+            </select>
+            <input type="time" id="task-start" value="17:00" class="w-full border rounded p-2" />
+            <input type="time" id="task-end" value="18:00" class="w-full border rounded p-2" />
+            <label class="flex items-center space-x-2">
+              <input type="checkbox" id="task-essential" checked />
+              <span>Essential Task</span>
+            </label>
+            <button type="submit" class="w-full bg-rose-600 text-white font-medium py-2 rounded">Add Task</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ADVISOR & RE-PLAN TAB -->
+    <section id="tab-advisor" class="tab-content hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Scenario Re-plan Engine -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+          <h3 class="text-lg font-bold text-slate-900">🔄 Re-plan Engine ("Life Happens")</h3>
+          <p class="text-xs text-slate-600">Select a life scenario to see a proposed Before/After plan to approve or undo.</p>
+          <div class="space-y-2">
+            <button class="btn-scenario w-full text-left px-3 py-2 border rounded-lg hover:bg-rose-50 text-xs font-medium" data-scenario="child_sick">🤒 Child is sick today</button>
+            <button class="btn-scenario w-full text-left px-3 py-2 border rounded-lg hover:bg-rose-50 text-xs font-medium" data-scenario="salary_delayed">💸 Salary delayed by 10 days</button>
+            <button class="btn-scenario w-full text-left px-3 py-2 border rounded-lg hover:bg-rose-50 text-xs font-medium" data-scenario="unexpected_expense">🔧 Unexpected ₹1,000 repair cost</button>
+          </div>
+
+          <div id="replan-proposal-box" class="hidden border border-rose-200 rounded-xl p-4 bg-rose-50/50 space-y-3">
+            <h4 id="prop-title" class="font-bold text-sm text-slate-900"></h4>
+            <div id="prop-summary" class="text-xs text-slate-700 space-y-1"></div>
+            <div class="flex gap-2 pt-2">
+              <button id="btn-approve-plan" class="bg-emerald-600 text-white text-xs font-semibold px-4 py-2 rounded-lg">✅ Approve Plan</button>
+              <button id="btn-undo-plan" class="bg-slate-300 text-slate-800 text-xs font-semibold px-4 py-2 rounded-lg">❌ Undo / Reject</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor Symptom Triage -->
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm space-y-4">
+          <h3 class="text-lg font-bold text-slate-900">🩺 Symptom Triage & Doctor Action</h3>
+          <form id="form-triage" class="space-y-3">
+            <div>
+              <label class="block text-xs font-medium text-slate-600">Patient</label>
+              <select id="triage-patient" class="w-full border rounded-lg p-2 text-xs">
+                <option value="Child (Aarav)">Child (Aarav)</option>
+                <option value="Mother (Priya)">Mother (Priya)</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-600">Symptoms</label>
+              <textarea id="triage-symptoms" placeholder="e.g. Mild fever, runny nose..." class="w-full border rounded-lg p-2 text-xs" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="w-full bg-rose-600 text-white text-xs font-semibold py-2 rounded-lg">Run Triage</button>
+          </form>
+
+          <div id="triage-result-box" class="hidden border rounded-xl p-4 text-xs space-y-2"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. WEEKLY REVIEW TAB -->
+    <section id="tab-review" class="tab-content hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+        <h3 class="text-xl font-bold text-slate-900">📊 Sunday Weekly Review</h3>
+        <p class="text-sm text-slate-600">Summary of household budget adherence, sleep trends, and focus goals for next week.</p>
+        <div id="review-content" class="space-y-3 text-sm"></div>
+      </div>
+    </section>
+
+    <!-- 7. PROFILE TAB -->
+    <section id="tab-profile" class="tab-content hidden space-y-6">
+      <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm max-w-2xl mx-auto">
+        <h3 class="text-lg font-bold text-slate-900 mb-4">⚙️ Household Profile & Memory</h3>
+        <form id="form-profile" class="space-y-4 text-sm">
+          <div>
+            <label class="block font-medium">Mother Name</label>
+            <input type="text" id="prof-name" class="w-full border rounded p-2" required />
+          </div>
+          <div>
+            <label class="block font-medium">Monthly Income (₹)</label>
+            <input type="number" id="prof-income" class="w-full border rounded p-2" required />
+          </div>
+          <div>
+            <label class="block font-medium">City</label>
+            <input type="text" id="prof-city" class="w-full border rounded p-2" />
+          </div>
+          <div>
+            <label class="block font-medium">Trusted Contact Name</label>
+            <input type="text" id="prof-contact-name" class="w-full border rounded p-2" />
+          </div>
+          <div>
+            <label class="block font-medium">Trusted Contact Phone</label>
+            <input type="text" id="prof-contact-phone" class="w-full border rounded p-2" />
+          </div>
+          <button type="submit" class="w-full bg-rose-600 text-white font-semibold py-2 rounded-lg">Save Profile Memory</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JavaScript Client (cache-busted) -->
+  <script src="/static/app.js?v=20261013_2"></script>
+</body>
+</html>

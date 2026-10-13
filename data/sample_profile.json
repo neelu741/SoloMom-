@@ -1,0 +1,74 @@
+{
+  "personas": {
+    "priya": {
+      "mother": {
+        "name": "Priya",
+        "age": 32,
+        "city": "Gurgaon",
+        "occupation": "Office administrator",
+        "monthly_income": 32000,
+        "work_hours": "09:00 - 18:00",
+        "trusted_contact": {
+          "name": "Sunita (neighbour)",
+          "phone": "9876543210"
+        }
+      },
+      "child": {
+        "name": "Aarav",
+        "age_years": 4,
+        "school": "Little Steps Daycare"
+      },
+      "doctor": {
+        "name": "Dr. Sharma",
+        "specialty": "Pediatrician",
+        "phone": "9811002233",
+        "clinic_hours": "10:00-13:00, 17:00-20:00"
+      },
+      "budget": [
+        {"category": "Rent", "planned": 9000, "is_essential": true},
+        {"category": "School & Daycare", "planned": 4000, "is_essential": true},
+        {"category": "Groceries", "planned": 6000, "is_essential": true},
+        {"category": "Transport", "planned": 2000, "is_essential": false},
+        {"category": "Utilities & Phone", "planned": 2000, "is_essential": true},
+        {"category": "Medical Buffer", "planned": 1500, "is_essential": true},
+        {"category": "Savings", "planned": 3000, "is_essential": false},
+        {"category": "Other", "planned": 2000, "is_essential": false}
+      ]
+    },
+    "aarti": {
+      "mother": {
+        "name": "Aarti",
+        "age": 36,
+        "city": "Delhi",
+        "occupation": "Govt teacher",
+        "monthly_income": 65000,
+        "work_hours": "07:30 - 14:30",
+        "trusted_contact": {
+          "name": "Kavita (sister)",
+          "phone": "9876543211"
+        }
+      },
+      "child": {
+        "name": "Veda",
+        "age_years": 12,
+        "school": "Kendriya Vidyalaya"
+      },
+      "doctor": {
+        "name": "Dr. Verma",
+        "specialty": "Family Physician & Adolescent Health",
+        "phone": "9811004455",
+        "clinic_hours": "16:00-19:30"
+      },
+      "budget": [
+        {"category": "Rent", "planned": 5000, "is_essential": true},
+        {"category": "School & Daycare", "planned": 3000, "is_essential": true},
+        {"category": "Groceries", "planned": 12000, "is_essential": true},
+        {"category": "Transport", "planned": 3500, "is_essential": false},
+        {"category": "Utilities & Phone", "planned": 3500, "is_essential": true},
+        {"category": "Medical Buffer", "planned": 3000, "is_essential": true},
+        {"category": "Savings", "planned": 25000, "is_essential": false},
+        {"category": "Other", "planned": 5000, "is_essential": false}
+      ]
+    }
+  }
+}
